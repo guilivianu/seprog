@@ -1,48 +1,57 @@
-export default function Footer() {
+import React from "react";
+
+const Footer = () => {
   return (
-    <footer id="organizadores" className=" bg-blue-dark text-white">
-      <div className="flex  items-center justify-center py-4 max-w-6xl  mx-auto gap-32">
-        {/* div das imagens em cima da logo da byron */}
-        <div className="flex flex-col items-center">
-          <img className="w-32" src="/img/unifei.png" alt="Logo da Byron" />
-          <img className="w-36 left-0" src="/img/imc.png" alt="Logo da Byron" />
-        </div>
+    <footer className="flex flex-col items-center justify-center bg-blue-dark text-white">
+      <div className="flex flex-col items-center justify-between w-full max-w-6xl">
+        <div className="flex items-center md:justify-normal md:gap-36 md:w-auto p-4 w-full justify-between">
+          <div className="flex flex-col items-center w-52">
+            <picture>
+              <img src="/img/unifei.png" alt="Logo da UNIFEI" />
+            </picture>
+            <picture>
+              <img src="/img/imc.png" alt="Logo do IMC" />
+            </picture>
+          </div>
 
-        <div className="flex flex-col items-center">
-          <img
-            className="w-24"
-            src="/img/logo_seprog.png"
-            alt="Logo da Byron"
-          />
-          <img
-            className="w-24"
-            src="/img/TextLogoTitle.png"
-            alt="Logo da Byron"
-          />
-          <span className="text-sm">Todos os direitos reservados</span>
-        </div>
+          <div className="flex flex-col items-center">
+            <picture>
+              <img src="/img/logo_seprog.png" alt="Logo da SEPROG" />
+            </picture>
 
-        <div>
-          <h2 className="font-semibold text-xl ">Organizadores</h2>
-          <ul className="pt-3">
-            <li>byron.solutions</li>
-            <li>Black Bee Drones</li>
-            <li>Dev-U</li>
-            <li>Maratona de programação</li>
-          </ul>
+            <picture>
+              <img src="/img/TextLogoTitle.png" alt="Escrita SEPROG 2022" />
+            </picture>
+
+            <p className="text-xs font-thin mt-3">
+              Todos os direitos reservados
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h2 className="text-3xl font-semibold">Organizadores</h2>
+
+            <ul className="flex flex-col">
+              <li>byron.solutions</li>
+              <li>Black Bee Drones</li>
+              <li>Dev-U</li>
+              <li>Maratona de Programação</li>
+            </ul>
+          </div>
         </div>
       </div>
-
       <div
-        style={{ boxShadow: "0 -4px 8px rgba(0,0,0,0.10)" }}
-        className=" flex items-center justify-center "
+        className="flex items-center justify-center w-full"
+        style={{ boxShadow: "0 -4px 8px rgba(0, 0, 0, 0.10)" }}
       >
         <a href="https://byronsolutions.com/" target="_blank">
           <picture>
-            <img className="w-80" src="/img/devbsol.png" alt="Logo da Byron" />
+            <img src="/img/devbsol.png" alt="Logo da byron.solutions" />
           </picture>
         </a>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -131,7 +131,7 @@ export default function Home() {
               </h1>
 
               <p>
-                Se atualize com a evolução da tecnologia! Será uma semana de
+                Atualize-se com a evolução da tecnologia! Será uma semana de
                 aprendizados em desenvolvimento web, visão computacional,
                 programação em jogos e maratona de programação!
               </p>
@@ -152,7 +152,10 @@ export default function Home() {
       {/* /HEADER */}
 
       {/* SOBRE */}
-      <section className="flex items-center justify-center bg-blue-dark text-white py-12">
+      <section
+        id="sobre"
+        className="flex items-center justify-center bg-blue-dark text-white py-12"
+      >
         <div className="flex flex-col items-center max-w-6xl w-full py-8">
           {/* SUB-SESSÃO 1 */}
           <div className="flex items-center gap-24">
@@ -185,8 +188,11 @@ export default function Home() {
           </div>
           {/* /SUB-SESSÃO 1 */}
 
-          {/* SUB-SESSÃO 2 */}
-          <div className="flex flex-col items-center gap-24 py-32">
+          {/* SUB-SESSÃO 2 - Organizadores */}
+          <div
+            id="organizadores"
+            className="flex flex-col items-center gap-24 py-32"
+          >
             <div className="flex flex-col items-center gap-16">
               <h2 className="text-4xl font-bold">Aprenda com os melhores</h2>
 
@@ -205,7 +211,10 @@ export default function Home() {
       {/* /SOBRE */}
 
       {/* PROGRAMAÇÃO */}
-      <section className="flex items-center justify-center bg-gradient-to-b from-blue-dark to-blue-light text-white py-36">
+      <section
+        id="programacao"
+        className="flex items-center justify-center bg-gradient-to-b from-blue-dark to-blue-light text-white py-12 pb-36"
+      >
         <div className="flex flex-col items-center max-w-6xl w-full">
           <Tab.Group>
             <div className="flex items-center rounded-3xl bg-gray shadow">
@@ -250,6 +259,37 @@ export default function Home() {
         </div>
       </section>
       {/* /PROGRAMAÇÃO */}
+
+      {/* MAPS */}
+      <section className="flex items-center justify-center bg-gradient-to-b from-blue-light to-blue-dark text-white py-16">
+        <div className="flex flex-col items-center max-w-6xl w-full gap-8">
+          <h2 className="text-4xl font-bold drop-shadow">
+            Localização do evento
+          </h2>
+
+          <div className="w-full">
+            <iframe
+              className="w-full rounded-[48px] border-4 border-yellow shadow"
+              width="100%"
+              height="600"
+              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=-22.4129731,%20-45.44891969710001+(UNIFEI)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+            ></iframe>
+          </div>
+
+          <img className="w-20" src="/img/mapa.png" alt="Ícone de um mapa" />
+
+          <span className="text-4xl font-bold">SEPROG</span>
+
+          <div className="flex flex-col items-center text-xl">
+            <span className="text-2xl font-bold">
+              Instituto de Matemática e Computação - UNIFEI
+            </span>
+            <span>Avenida BPS, 1303 - Pinheirinho</span>
+            <span>Itajubá - MG</span>
+          </div>
+        </div>
+      </section>
+      {/* /MAPS */}
     </>
   );
 }
