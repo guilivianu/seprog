@@ -4,7 +4,121 @@ import { Tab } from "@headlessui/react";
 import ByronCard from "../components/ByronCard";
 import CallButton from "../components/CallButton";
 
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export default function Home() {
+  let participantData = [
+    {
+      img: {
+        src: "/img/imgparticipante.jfif",
+        alt: "Logo da byron",
+      },
+      name: "byron.solutions",
+      content: "Conteúdo de CSS, HTML e JS.",
+      longContent:
+        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
+      social: {
+        href: "https://instagram.com/byron.solutions",
+        name: "@byron.solutions",
+      },
+    },
+    {
+      img: {
+        src: "/img/imgparticipante.jfif",
+        alt: "Logo da byron",
+      },
+      name: "byron.solutions",
+      content: "Conteúdo de CSS, HTML e JS.",
+      longContent:
+        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
+      social: {
+        href: "https://instagram.com/byron.solutions",
+        name: "@byron.solutions",
+      },
+    },
+    {
+      img: {
+        src: "/img/imgparticipante.jfif",
+        alt: "Logo da byron",
+      },
+      name: "byron.solutions",
+      content: "Conteúdo de CSS, HTML e JS.",
+      longContent:
+        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
+      social: {
+        href: "https://instagram.com/byron.solutions",
+        name: "@byron.solutions",
+      },
+    },
+    {
+      img: {
+        src: "/img/imgparticipante.jfif",
+        alt: "Logo da byron",
+      },
+      name: "byron.solutions",
+      content: "Conteúdo de CSS, HTML e JS.",
+      longContent:
+        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
+      social: {
+        href: "https://instagram.com/byron.solutions",
+        name: "@byron.solutions",
+      },
+    },
+  ];
+
+  let tabsData = [
+    {
+      id: 1,
+      tab: {
+        day: "Segunda-feira (19/09)",
+        person: "byron.solutions",
+        description: "Desenvolvimento de um portifólio pessoal 1",
+      },
+      content: {
+        title: "Desenvolvimento de um portifólio pessoal 1",
+        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
+      },
+    },
+    {
+      id: 2,
+      tab: {
+        day: "Quarta-feira (21/09)",
+        person: "byron.solutions",
+        description: "Desenvolvimento de um portifólio pessoal 2 ",
+      },
+      content: {
+        title: "Desenvolvimento de um portifólio pessoal 2",
+        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
+      },
+    },
+    {
+      id: 3,
+      tab: {
+        day: "Quinta-feira (22/09)",
+        person: "byron.solutions",
+        description: "Desenvolvimento de um portifólio pessoal 3",
+      },
+      content: {
+        title: "Desenvolvimento de um portifólio pessoal 3",
+        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
+      },
+    },
+    {
+      id: 4,
+      tab: {
+        day: "Sexta-feira (23/09)",
+        person: "byron.solutions",
+        description: "Desenvolvimento de um portifólio pessoal 4",
+      },
+      content: {
+        title: "Desenvolvimento de um portifólio pessoal 4",
+        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
+      },
+    },
+  ];
+
   return (
     <>
       {/* HEADER */}
@@ -77,26 +191,9 @@ export default function Home() {
               <h2 className="text-4xl font-bold">Aprenda com os melhores</h2>
 
               <div className="grid grid-cols-2 grid-rows-2 gap-10">
-                <ByronCard
-                  imgUrl="/img/imgparticipante.jfif"
-                  name="byron.solutions"
-                  content="Conteúdo de CSS, HTML e JS."
-                />
-                <ByronCard
-                  imgUrl="/img/imgparticipante.jfif"
-                  name="byron.solutions"
-                  content="Conteúdo de CSS, HTML e JS."
-                />
-                <ByronCard
-                  imgUrl="/img/imgparticipante.jfif"
-                  name="byron.solutions"
-                  content="Conteúdo de CSS, HTML e JS."
-                />
-                <ByronCard
-                  imgUrl="/img/imgparticipante.jfif"
-                  name="byron.solutions"
-                  content="Conteúdo de CSS, HTML e JS."
-                />
+                {participantData.map((participant, key) => (
+                  <ByronCard key={key} data={participant} />
+                ))}
               </div>
             </div>
 
@@ -107,74 +204,52 @@ export default function Home() {
       </section>
       {/* /SOBRE */}
 
-      {/*  */}
+      {/* PROGRAMAÇÃO */}
       <section className="flex items-center justify-center bg-gradient-to-b from-blue-dark to-blue-light text-white py-36">
         <div className="flex flex-col items-center max-w-6xl w-full">
           <Tab.Group>
             <div className="flex items-center rounded-3xl bg-gray shadow">
-              <Tab.List className="flex flex-col items-start">
-                <Tab className="">
-                  <button className="flex flex-col items-start gap-2 text-xl px-6 py-3 text-left bg-blue-dark rounded-br-2xl rounded-tl-2xl last:rounded-bl-2xl last:rounded-br-none shadow">
-                    <h3 className="text-2xl font-bold">Segunda-feira</h3>
-                    <span>byron.solutions</span>
-                    <p className=" font-bold">
-                      Desenvolvimento de um portifólio pessoal
-                    </p>
-                  </button>
-                </Tab>
-
-                <Tab className="">
-                  <button className="flex flex-col items-start gap-2 text-xl px-6 py-3 text-left bg-blue-dark rounded-r-2xl last:rounded-bl-2xl last:rounded-br-none shadow">
-                    <h3 className="text-2xl font-bold">Segunda-feira</h3>
-                    <span>byron.solutions</span>
-                    <p className=" font-bold">
-                      Desenvolvimento de um portifólio pessoal
-                    </p>
-                  </button>
-                </Tab>
-
-                <Tab className="">
-                  <button className="flex flex-col items-start gap-2 text-xl px-6 py-3 text-left bg-blue-dark rounded-r-2xl last:rounded-bl-2xl last:rounded-br-none shadow">
-                    <h3 className="text-2xl font-bold">Segunda-feira</h3>
-                    <span>byron.solutions</span>
-                    <p className=" font-bold">
-                      Desenvolvimento de um portifólio pessoal
-                    </p>
-                  </button>
-                </Tab>
+              <Tab.List as="ul" className="flex flex-col items-start">
+                {tabsData.map((tab, index) => (
+                  <Tab
+                    as="li"
+                    key={index}
+                    className={({ selected }) =>
+                      classNames(
+                        "bg-blue-dark rounded-r-2xl first:rounded-tl-2xl first:rounded-tr-none last:rounded-bl-2xl last:rounded-br-none shadow-lg w-80",
+                        selected
+                          ? "bg-blue-light w-[360px] z-10 first:mt-0 my-2 last:mb-0"
+                          : ""
+                      )
+                    }
+                    // className="bg-blue-dark rounded-r-2xl first:rounded-tl-2xl first:rounded-tr-none last:rounded-bl-2xl last:rounded-br-none shadow"
+                  >
+                    <button className="flex flex-col items-start gap-2 text-xl px-6 py-3 text-left">
+                      <h3 className="text-2xl font-bold">{tab.tab.day}</h3>
+                      <span>{tab.tab.person}</span>
+                      <p className=" font-bold">{tab.tab.description}</p>
+                    </button>
+                  </Tab>
+                ))}
               </Tab.List>
 
               <Tab.Panels>
-                <Tab.Panel className=" bg-blue-light m-16 p-6 rounded-3xl">
-                  Painel 2
-                </Tab.Panel>
+                {tabsData.map((tab, index) => (
+                  <Tab.Panel
+                    key={index}
+                    className=" bg-blue-light m-16 p-6 rounded-3xl"
+                  >
+                    <h2>{tab.content.title}</h2>
 
-                <Tab.Panel className=" bg-blue-light m-16 p-6 rounded-3xl">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                  et temporibus totam laborum cupiditate voluptatem saepe,
-                  dolorem beatae! Eligendi, temporibus excepturi omnis molestias
-                  reiciendis sequi tempora assumenda repellat, inventore aliquam
-                  placeat laborum ipsam non! Adipisci eos soluta vel distinctio
-                  quae cumque fuga aperiam labore. Maxime consectetur
-                  consequatur corporis magni fugit temporibus saepe in facere
-                  laborum aspernatur aliquam at, aliquid ducimus minima, eius
-                  labore omnis rem! Saepe optio aliquam earum alias quidem neque
-                  consectetur aspernatur tempora minima ipsa? Ex voluptate
-                  fugiat quisquam blanditiis laboriosam quibusdam illum, officia
-                  asperiores explicabo, dignissimos maxime voluptatibus culpa
-                  error. Distinctio aperiam, ipsum aliquid magni quibusdam
-                  minima.
-                </Tab.Panel>
-
-                <Tab.Panel className=" bg-blue-light m-16 p-6 rounded-3xl">
-                  Batata
-                </Tab.Panel>
+                    <p>{tab.content.text}</p>
+                  </Tab.Panel>
+                ))}
               </Tab.Panels>
             </div>
           </Tab.Group>
         </div>
       </section>
-      {/* / */}
+      {/* /PROGRAMAÇÃO */}
     </>
   );
 }
