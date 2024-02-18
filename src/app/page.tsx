@@ -3,138 +3,64 @@
 import { Tab } from "@headlessui/react";
 import ByronCard from "../components/ByronCard";
 import CallButton from "../components/CallButton";
+import axiosHeader from "@/api/axiosHeader";
+
+// INTERFACES
+import { IHomepage, Attributes } from "@/interface/IHomepage";
+import IOrganizers from "@/interface/IOrganizers";
+import ISchedules from "@/interface/ISchedules";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home() {
-  let participantData = [
-    {
-      img: {
-        src: "/img/imgparticipante.jfif",
-        alt: "Logo da byron",
-      },
-      name: "byron.solutions",
-      content: "Conteúdo de CSS, HTML e JS.",
-      longContent:
-        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
-      social: {
-        href: "https://instagram.com/byron.solutions",
-        name: "@byron.solutions",
-      },
-    },
-    {
-      img: {
-        src: "/img/imgparticipante.jfif",
-        alt: "Logo da byron",
-      },
-      name: "byron.solutions",
-      content: "Conteúdo de CSS, HTML e JS.",
-      longContent:
-        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
-      social: {
-        href: "https://instagram.com/byron.solutions",
-        name: "@byron.solutions",
-      },
-    },
-    {
-      img: {
-        src: "/img/imgparticipante.jfif",
-        alt: "Logo da byron",
-      },
-      name: "byron.solutions",
-      content: "Conteúdo de CSS, HTML e JS.",
-      longContent:
-        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
-      social: {
-        href: "https://instagram.com/byron.solutions",
-        name: "@byron.solutions",
-      },
-    },
-    {
-      img: {
-        src: "/img/imgparticipante.jfif",
-        alt: "Logo da byron",
-      },
-      name: "byron.solutions",
-      content: "Conteúdo de CSS, HTML e JS.",
-      longContent:
-        "A byron.solutions é uma empresa júnior que atua no ramo de consultoria em TI, com soluções em desenvolvimento de sistemas, de sites e inclusão digital de pequenas empresas. É composta por alunos dos cursos de Sistemas da Informação, Ciência da Computação e Engenharia da Computação.",
-      social: {
-        href: "https://instagram.com/byron.solutions",
-        name: "@byron.solutions",
-      },
-    },
-  ];
+interface IProps {
+  homepage: Attributes;
+  organizers: IOrganizers[];
+  schedules: ISchedules[];
+}
 
-  let tabsData = [
-    {
-      id: 1,
-      tab: {
-        day: "Segunda-feira (19/09)",
-        person: "byron.solutions",
-        description: "Desenvolvimento de um portifólio pessoal 1",
-      },
-      content: {
-        title: "Desenvolvimento de um portifólio pessoal 1",
-        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
-      },
-    },
-    {
-      id: 2,
-      tab: {
-        day: "Quarta-feira (21/09)",
-        person: "byron.solutions",
-        description: "Desenvolvimento de um portifólio pessoal 2 ",
-      },
-      content: {
-        title: "Desenvolvimento de um portifólio pessoal 2",
-        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
-      },
-    },
-    {
-      id: 3,
-      tab: {
-        day: "Quinta-feira (22/09)",
-        person: "byron.solutions",
-        description: "Desenvolvimento de um portifólio pessoal 3",
-      },
-      content: {
-        title: "Desenvolvimento de um portifólio pessoal 3",
-        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
-      },
-    },
-    {
-      id: 4,
-      tab: {
-        day: "Sexta-feira (23/09)",
-        person: "byron.solutions",
-        description: "Desenvolvimento de um portifólio pessoal 4",
-      },
-      content: {
-        title: "Desenvolvimento de um portifólio pessoal 4",
-        text: "Teoria: O mini-curso terá como objetivo o ensinamento do ciclo básico do desenvolvimento web, contemplando HTML, CSS e JS.",
-      },
-    },
-  ];
+export const getStaticProps = async () => {
+  try {
+    // HOMEPAGE
+    const homepageRes = await axiosHeader.get<IHomepage>(
+      "pagina-inicial?populate=*"
+    );
+    const homepage = homepageRes.data.data.attributes;
 
+    // ORGANIZERS
+    const organizersRes = await axiosHeader.get<IOrganizers>(
+      "organizers?populate=*"
+    );
+    const organizers = organizersRes.data.data;
+
+    // SCHEDULES
+    const schedulesRes = await axiosHeader.get<ISchedules>(
+      "programacaos?populate=*"
+    );
+    const schedules = schedulesRes.data.data;
+
+    return {
+      props: { homepage, organizers, schedules },
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+export default function Home({ homepage, organizers, schedules }: IProps) {
   return (
     <>
-      {/* HEADER */}
+      {/* HERO */}
       <section className="flex items-center justify-center bg-gradient-to-b from-blue-light to-blue-dark text-white py-12">
         <div className="flex items-center max-w-6xl w-full">
           <div className="flex flex-col gap-16 max-w-lg">
             <div className="flex flex-col gap-5">
               <h1 className="text-4xl font-bold drop-shadow">
-                II Semana de Programação
+                {homepage.heroTitle}
               </h1>
 
-              <p>
-                Atualize-se com a evolução da tecnologia! Será uma semana de
-                aprendizados em desenvolvimento web, visão computacional,
-                programação em jogos e maratona de programação!
-              </p>
+              <p>{homepage.heroDescription}</p>
             </div>
 
             <CallButton start />
@@ -149,7 +75,7 @@ export default function Home() {
           </picture>
         </div>
       </section>
-      {/* /HEADER */}
+      {/* /HERO */}
 
       {/* SOBRE */}
       <section
@@ -173,17 +99,10 @@ export default function Home() {
               <h2 className="text-xl font-bold">Sobre a SEPROG</h2>
 
               <p className=" text-4xl font-bold drop-shadow">
-                Faça parte dessa evolução
+                {homepage.aboutTitle}
               </p>
 
-              <p>
-                Com sua primeira edição em 2021 no formato EAD, a Semana de
-                Programação vem se tornando um grande evento realizado pelo
-                Instituto de Matemática e Computação da UNIFEI, com o objetivo
-                de mostrar e ensinar conteúdos incríveis, muito fortes no ramo
-                profissional, de uma forma prática, para todos os alunos na
-                universidade.
-              </p>
+              <p>{homepage.aboutDescription}</p>
             </div>
           </div>
           {/* /SUB-SESSÃO 1 */}
@@ -197,7 +116,7 @@ export default function Home() {
               <h2 className="text-4xl font-bold">Aprenda com os melhores</h2>
 
               <div className="grid grid-cols-2 grid-rows-2 gap-10">
-                {participantData.map((participant, key) => (
+                {organizers.map((participant, key) => (
                   <ByronCard key={key} data={participant} />
                 ))}
               </div>
@@ -217,9 +136,9 @@ export default function Home() {
       >
         <div className="flex flex-col items-center max-w-6xl w-full">
           <Tab.Group>
-            <div className="flex items-center rounded-3xl bg-gray shadow">
-              <Tab.List as="ul" className="flex flex-col items-start">
-                {tabsData.map((tab, index) => (
+            <div className="flex items-center rounded-3xl bg-gray shadow-xl">
+              <Tab.List as="ul" className="flex flex-col items-start gap-1">
+                {schedules.map((tab, index) => (
                   <Tab
                     as="li"
                     key={index}
@@ -227,30 +146,34 @@ export default function Home() {
                       classNames(
                         "bg-blue-dark rounded-r-2xl first:rounded-tl-2xl first:rounded-tr-none last:rounded-bl-2xl last:rounded-br-none shadow-lg w-80",
                         selected
-                          ? "bg-blue-light w-[360px] z-10 first:mt-0 my-2 last:mb-0"
+                          ? "bg-blue-light w-[360px] z-10 first:mt-0 my-1 last:mb-0"
                           : ""
                       )
                     }
                     // className="bg-blue-dark rounded-r-2xl first:rounded-tl-2xl first:rounded-tr-none last:rounded-bl-2xl last:rounded-br-none shadow"
                   >
                     <button className="flex flex-col items-start gap-2 text-xl px-6 py-3 text-left">
-                      <h3 className="text-2xl font-bold">{tab.tab.day}</h3>
-                      <span>{tab.tab.person}</span>
-                      <p className=" font-bold">{tab.tab.description}</p>
+                      <h3 className="text-2xl font-bold">
+                        {tab.data[0].attributes.tabDay}
+                      </h3>
+                      <span>{tab.data[0].attributes.organizer}</span>
+                      <p className=" font-bold">
+                        {tab.data[0].attributes.theme}
+                      </p>
                     </button>
                   </Tab>
                 ))}
               </Tab.List>
 
               <Tab.Panels>
-                {tabsData.map((tab, index) => (
+                {schedules.map((tab, index) => (
                   <Tab.Panel
                     key={index}
                     className=" bg-blue-light m-16 p-6 rounded-3xl"
                   >
-                    <h2>{tab.content.title}</h2>
+                    <h2>{tab.data[0].attributes.organizer}</h2>
 
-                    <p>{tab.content.text}</p>
+                    <p>{tab.data[0].attributes.theme}</p>
                   </Tab.Panel>
                 ))}
               </Tab.Panels>

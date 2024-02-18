@@ -1,18 +1,10 @@
 "use client";
+import IOrganizers from "@/interface/IOrganizers";
 import { Dialog, Transition } from "@headlessui/react";
 import React, { useState } from "react";
 
 interface IProps {
-  data: {
-    img: { src: string; alt: string };
-    name: string;
-    content: string;
-    longContent: string;
-    social: {
-      href: string;
-      name: string;
-    };
-  };
+  data: IOrganizers;
 }
 
 const ByronCard = ({ data }: IProps) => {
@@ -24,14 +16,16 @@ const ByronCard = ({ data }: IProps) => {
           <picture>
             <img
               className=" w-16 border-2 border-blue-light rounded-xl"
-              src={data.img.src}
-              alt={data.img.alt}
+              src={`https://127.0.0.1:1337/api/${data.data[0].attributes.logo.data.attributes.url}`}
+              alt=""
             />
           </picture>
 
           <div className="flex flex-col items-startdiv text-black">
-            <span className="font-bold">{data.name}</span>
-            <span>{data.content}</span>
+            <span className="font-bold">
+              {data.data[0].attributes.organizer}
+            </span>
+            <span>{data.data[0].attributes.shortContent}</span>
           </div>
 
           <button
@@ -65,11 +59,13 @@ const ByronCard = ({ data }: IProps) => {
                 <picture>
                   <img
                     className=" w-16 border-2 border-blue-light rounded-xl"
-                    src={data.img.src}
-                    alt={data.img.alt}
+                    src={`https://127.0.0.1:1337/api/${data.data[0].attributes.logo.data.attributes.url}`}
+                    alt=""
                   />
                 </picture>
-                <span className="font-bold text-4xl">{data.name}</span>
+                <span className="font-bold text-4xl">
+                  {data.data[0].attributes.organizer}
+                </span>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="hover:scale-105 focus:scale-105 focus:outline-none transition-all"
@@ -84,15 +80,16 @@ const ByronCard = ({ data }: IProps) => {
                 </button>
               </div>
 
-              <p className="">{data.content}</p>
+              <p className="">{data.data[0].attributes.shortContent}</p>
 
-              <p className="text-lg">{data.longContent}</p>
+              <p className="text-lg">{data.data[0].attributes.longContent}</p>
 
               <a
                 className=" self-center text-2xl font-bold hover:underline"
-                href={data.social.href}
+                href={data.data[0].attributes.socialUrl}
+                target="_blank"
               >
-                {data.social.name}
+                {data.data[0].attributes.socialName}
               </a>
             </div>
           </Dialog.Panel>
